@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"github.com/gorilla/mux"
 	"github.com/sirupsen/logrus"
+
+	// "github.com/gin-gonic/gin"
 )
 
 //APIServer ...
@@ -27,6 +29,7 @@ func (s *APIServer) Start() error{
 		return err
 	}
 	s.confifureRouter()
+	// configureRouterGin()
 
 	s.logger.Info("starting api server")
 	return http.ListenAndServe(s.config.BindAddr, s.router)
@@ -44,6 +47,15 @@ func (s *APIServer) configureLogger() error {
 func (s *APIServer) confifureRouter() {
 	s.router.HandleFunc("/message", s.handleMessage())
 }
+// func  configureRouterGin() {
+// 	r := gin.Default()
+// 	r.GET("/ping", func(c *gin.Context) {
+// 		c.JSON(200, gin.H{
+// 			"message": "pong",
+// 		})
+// 	})
+// 	 r.Run() 
+// }
 
 func (s*APIServer) handleMessage() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
