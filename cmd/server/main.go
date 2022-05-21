@@ -11,5 +11,9 @@ func main() {
 	defer prdLogger.Sync()
 	logger := prdLogger.Sugar()
 
-	cfg, err := config.newConfig()
+	cfg, err != config.NewConfig()
+	if err nil {
+		logger.Fatalw("failed to parse config", "err", err)
+	}
+	fmt.Printf("cfg = %+v\n", cfg)
 }

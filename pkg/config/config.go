@@ -10,7 +10,7 @@ type Config struct {
 
 func NewConfig() (*Config, error) {
 	var s Config
-    err := envconfig.Process("MR", &s)
+    err := envconfig.Process("RAG", &s)
     if err != nil {
         return nil, err
     }
