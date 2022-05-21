@@ -5,6 +5,7 @@ import (
 	"flag"
 	"log"
 	"github.com/savaukr/restApiGolang/internal/app/apiserver"
+	
 )
 
 var (
@@ -12,7 +13,7 @@ var (
 )
 
 func init() {
-	flag.SringVar(&configPath, "config-path", "configs/apiserver.toml", "path to config file")
+	flag.StringVar(&configPath, "config-path", "configs/apiserver.toml", "path to config file")
 }
 
 func main() {
@@ -24,7 +25,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	s := apiserver.New()
+	s := apiserver.New(config)
 	if err :=s.Start(); err != nil {
 		log.Fatal(err)
 	}
